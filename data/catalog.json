@@ -1,0 +1,67 @@
+[
+    {
+        "product": "iPhone 15 Pro 128GB",
+        "category": "Smartphone",
+        "pixmania_price": 1049,
+        "competitors": {
+            "Amazon FR": 999,
+            "Fnac": 1079,
+            "Darty": 1089,
+            "LDLC": 1019
+        },
+        "stock_pixmania": 45,
+        "market": "FR"
+    },
+    {
+        "product": "Samsung Galaxy S24 256GB",
+        "category": "Smartphone",
+        "pixmania_price": 849,
+        "competitors": {
+            "Amazon FR": 829,
+            "Fnac": 869,
+            "Darty": 879,
+            "LDLC": 839
+        },
+        "stock_pixmania": 120,
+        "market": "FR"
+    },
+    {
+        "product": "MacBook Air M3 13\"",
+        "category": "Laptop",
+        "pixmania_price": 1299,
+        "competitors": {
+            "Amazon FR": 1249,
+            "Fnac": 1329,
+            "Darty": 1319,
+            "LDLC": 1269
+        },
+        "stock_pixmania": 23,
+        "market": "FR"
+    },
+    {
+        "product": "Sony WH-1000XM5",
+        "category": "Audio",
+        "pixmania_price": 279,
+        "competitors": {
+            "Amazon FR": 259,
+            "Fnac": 299,
+            "Darty": 289,
+            "LDLC": 269
+        },
+        "stock_pixmania": 67,
+        "market": "FR"
+    },
+    {
+        "product": "iPad Pro 11\" M4 256GB",
+        "category": "Tablet",
+        "pixmania_price": 1199,
+        "competitors": {
+            "Amazon FR": 1149,
+            "Fnac": 1229,
+            "Darty": 1219,
+            "LDLC": 1179
+        },
+        "stock_pixmania": 8,
+        "market": "FR"
+    }
+]
