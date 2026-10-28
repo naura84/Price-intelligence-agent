@@ -1,10 +1,19 @@
 import json
 import os
+
 from dotenv import load_dotenv
-from anthropic import Anthropic
+from google import genai
+from google.genai import types
 
 load_dotenv()
-client = Anthropic()
+
+api_key = os.getenv("GEMINI_API_KEY")
+MODEL = os.getenv("GEMINI_MODEL", "gemini-3.5-flash-lite")
+
+if not api_key:
+    raise RuntimeError("Clé api introuvable dans le fichier env")
+
+client = genai.Client(api_key=api_key)
 
 def generate_report(analysis):
     """
@@ -35,12 +44,14 @@ Ton style : professionnel mais direct.
 Chaque recommandation doit être actionnable en 24-48h.
 Utilise des chiffres précis. Sois synthétique."""
 
-    message = client.messages.create(
-        model="claude-sonnet-4-6",
-        max_tokens=1000,
-        messages=[
-            {"role": "user", "content": prompt}
-        ]
+    message = client.models.generate_content(
+        model=MODEL,
+        contents=prompt,
+        config=types.GenerateContentConfig(
+            tools=[
+                types.Tool(google_search=types.GoogleSearch()),
+            ]
+        ),
     )
-    
-    return message.content[0].text
+
+    return message.text

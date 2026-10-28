@@ -1,15 +1,14 @@
 def generate_alerts(analysis):
-    """
-    Identifie et formate les alertes critiques.
-    """
+    """Regroupe les produits par niveau de priorite."""
     urgent = [p for p in analysis if p["priority"] == "HIGH"]
+    watch = [p for p in analysis if p["priority"] == "MEDIUM"]
     opportunities = [p for p in analysis if p["priority"] == "OPPORTUNITY"]
-    
-    alerts = {
+
+    return {
         "urgent_count": len(urgent),
+        "watch_count": len(watch),
         "opportunity_count": len(opportunities),
         "urgent_products": urgent,
-        "opportunities": opportunities
+        "watch_products": watch,
+        "opportunities": opportunities,
     }
-    
-    return alerts

@@ -1,105 +1,95 @@
-# Price-intelligente-agent
+# Price Intelligence Agent
 
-This project is a price intelligence agent designed to analyze product catalog prices, compare Pixmania’s pricing with competitors, detect at-risk items, and generate a business-ready report.
+A price intelligence project that compares Pixmania's prices with competitors', flags at-risk products and opportunities, and generates a business-ready report with an AI model. It currently runs as a pipeline; the goal is to turn it into a real agent (see Roadmap).
 
-## Goal
-
-The pipeline helps to:
-- retrieve product catalog data,
-- compare each Pixmania price with competitor prices,
-- identify significant price gaps,
-- flag high-priority opportunities and risks,
-- produce a natural-language report using an AI model.
-
-## How the pipeline works
-
-The main script runs the following steps:
-1. Read the catalog from [data/catalog.json](data/catalog.json)
-2. Compute the gap between Pixmania prices and competitor prices
-3. Classify products by urgency or opportunity level
-4. Generate business alerts
-5. Produce an AI-generated report
+## What it does
+1. Reads the catalog from [data/catalog.json](data/catalog.json) (simulated data)
+2. Computes the gap between Pixmania and each competitor, in euros and in %
+3. Classifies each product: urgent, watch, opportunity, or OK
+4. Computes the margin and checks whether Pixmania could match the cheapest competitor without going below a minimum margin
+5. Generates alerts, then an AI-written report
 
 ## Project structure
-
-- [main.py](main.py) — entry point of the pipeline
-- [src/scraper.py](src/scraper.py) — loads the JSON catalog
-- [src/analyzer.py](src/analyzer.py) — computes price gaps and classifications
-- [src/alerts.py](src/alerts.py) — generates alerts
-- [src/llm_reporter.py](src/llm_reporter.py) — generates the report using AI
-- [data/catalog.json](data/catalog.json) — sample catalog data
-
-## Prerequisites
-
-- Python 3.10+
-- An Anthropic account and API key for the AI report generation
-- Dependencies listed in [requirements.txt](requirements.txt)
+- [main.py](main.py) — entry point
+- [src/loader.py](src/loader.py) — loads the JSON catalog
+- [src/config.py](src/config.py) — decision thresholds (in %)
+- [src/analyzer.py](src/analyzer.py) — gaps, priorities, stock level, margins
+- [src/alerts.py](src/alerts.py) — groups products by priority
+- [src/formatting.py](src/formatting.py) — display helpers
+- [src/llm_reporter.py](src/llm_reporter.py) — AI report (Gemini API)
+- [tests/](tests/) — unit tests for the analysis logic
 
 ## Installation
+Run the commands one by one.
 
 ```bash
 python -m venv .venv
-source .venv/bin/activate   # macOS/Linux
-# or
-.venv\Scripts\activate      # Windows
+```
+Activate the environment:
+- Windows PowerShell: `.venv\Scripts\Activate.ps1`
+- Windows cmd: `.venv\Scripts\activate.bat`
+- macOS / Linux: `source .venv/bin/activate`
+
+```bash
 pip install -r requirements.txt
+pip install -r requirements-dev.txt
 ```
 
 ## Configuration
-
-Create a `.env` file at the project root with your API key:
+Copy `.env.example` to `.env` and add your API key:
 
 ```env
-ANTHROPIC_API_KEY=your_api_key_here
+GEMINI_API_KEY=your_api_key_here
+# Optional: GEMINI_MODEL=gemini-3.5-flash-lite
 ```
+Without a key, the dashboard still displays; only the AI report is skipped.
 
-The code uses this environment variable to initialize the Anthropic client.
-
-## Running the project
-
-Run the pipeline with:
-
+## Run
 ```bash
 python main.py
 ```
 
-The program will display:
-- the number of products analyzed,
-- the price differences,
-- the number of urgent alerts and opportunities,
-- the final AI-generated report.
+## Tests
+```bash
+python -m pytest
+```
+
+## Decision rules
+Gap = (Pixmania price − cheapest competitor) / cheapest competitor. Thresholds are percentages, so a 6 % gap is treated the same on a 100 € accessory and a 1000 € phone (see [src/config.py](src/config.py)):
+
+| Gap vs cheapest | Priority |
+|---|---|
+| ≥ +6 % | HIGH (urgent) |
+| ≥ +3 % | MEDIUM (watch) |
+| ≤ −3 % | OPPORTUNITY |
+| otherwise | LOW (OK) |
+
+Stock is reported as LOW (< 10), NORMAL, or HIGH (> 100). If `cost_price` is provided, the analysis also returns the current margin, the margin if Pixmania aligned on the cheapest competitor, and whether that alignment keeps at least 5 % margin.
 
 ## Data format
-
-The file [data/catalog.json](data/catalog.json) expects entries in the following format:
-
 ```json
 {
   "product": "Product name",
   "category": "Category",
   "pixmania_price": 100,
-  "competitors": {
-    "Amazon FR": 95,
-    "Fnac": 102
-  },
+  "cost_price": 80,
+  "competitors": {"Amazon FR": 95, "Fnac": 102},
   "stock_pixmania": 50,
   "market": "FR"
 }
 ```
+`cost_price` is optional.
 
-## Example business logic
+## Roadmap
+- [x] Percentage-based thresholds, stock level, margins, tests
+- [ ] Tools the model can call (list at-risk products, competitor prices, simulate a new price)
+- [ ] Agent loop with tool calling and a call log
+- [ ] Structured price recommendations with guardrails (minimum margin, human validation)
+- [ ] Price history and a real data source
 
-The project automatically classifies products based on observed gaps:
-- price much higher than the cheapest competitor → urgent alert,
-- price slightly above the market → watch list,
-- price lower than competitors → opportunity.
-
-## Limitations / notes
-
-- The project currently works with a local JSON catalog.
-- The quality of the AI report depends on the quality of the input data and the configured API key.
-- For production use, it would be useful to add a real data source, persistent storage, and automation.
+## Limitations
+- The catalog is simulated data, not live prices.
+- The AI report depends on the input data and on a valid API key.
 
 ## License
-
-No specific license has been defined for the repository yet.
+No license has been defined yet.

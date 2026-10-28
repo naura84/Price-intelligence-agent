@@ -1,67 +1,142 @@
 [
-    {
-        "product": "iPhone 15 Pro 128GB",
-        "category": "Smartphone",
-        "pixmania_price": 1049,
-        "competitors": {
-            "Amazon FR": 999,
-            "Fnac": 1079,
-            "Darty": 1089,
-            "LDLC": 1019
-        },
-        "stock_pixmania": 45,
-        "market": "FR"
+  {
+    "product": "iPhone 15 Pro 128GB",
+    "category": "Smartphone",
+    "pixmania_price": 1049,
+    "competitors": {
+      "Amazon FR": 999,
+      "Fnac": 1079,
+      "Darty": 1089,
+      "LDLC": 1019
     },
-    {
-        "product": "Samsung Galaxy S24 256GB",
-        "category": "Smartphone",
-        "pixmania_price": 849,
-        "competitors": {
-            "Amazon FR": 829,
-            "Fnac": 869,
-            "Darty": 879,
-            "LDLC": 839
-        },
-        "stock_pixmania": 120,
-        "market": "FR"
+    "stock_pixmania": 45,
+    "market": "FR",
+    "cost_price": 930
+  },
+  {
+    "product": "Samsung Galaxy S24 256GB",
+    "category": "Smartphone",
+    "pixmania_price": 849,
+    "competitors": {
+      "Amazon FR": 829,
+      "Fnac": 869,
+      "Darty": 879,
+      "LDLC": 839
     },
-    {
-        "product": "MacBook Air M3 13\"",
-        "category": "Laptop",
-        "pixmania_price": 1299,
-        "competitors": {
-            "Amazon FR": 1249,
-            "Fnac": 1329,
-            "Darty": 1319,
-            "LDLC": 1269
-        },
-        "stock_pixmania": 23,
-        "market": "FR"
+    "stock_pixmania": 120,
+    "market": "FR",
+    "cost_price": 760
+  },
+  {
+    "product": "MacBook Air M3 13\"",
+    "category": "Laptop",
+    "pixmania_price": 1299,
+    "competitors": {
+      "Amazon FR": 1249,
+      "Fnac": 1329,
+      "Darty": 1319,
+      "LDLC": 1269
     },
-    {
-        "product": "Sony WH-1000XM5",
-        "category": "Audio",
-        "pixmania_price": 279,
-        "competitors": {
-            "Amazon FR": 259,
-            "Fnac": 299,
-            "Darty": 289,
-            "LDLC": 269
-        },
-        "stock_pixmania": 67,
-        "market": "FR"
+    "stock_pixmania": 23,
+    "market": "FR",
+    "cost_price": 1170
+  },
+  {
+    "product": "Sony WH-1000XM5",
+    "category": "Audio",
+    "pixmania_price": 279,
+    "competitors": {
+      "Amazon FR": 259,
+      "Fnac": 299,
+      "Darty": 289,
+      "LDLC": 269
     },
-    {
-        "product": "iPad Pro 11\" M4 256GB",
-        "category": "Tablet",
-        "pixmania_price": 1199,
-        "competitors": {
-            "Amazon FR": 1149,
-            "Fnac": 1229,
-            "Darty": 1219,
-            "LDLC": 1179
-        },
-        "stock_pixmania": 8,
-        "market": "FR"
-    }
+    "stock_pixmania": 67,
+    "market": "FR",
+    "cost_price": 232
+  },
+  {
+    "product": "iPad Pro 11\" M4 256GB",
+    "category": "Tablet",
+    "pixmania_price": 1199,
+    "competitors": {
+      "Amazon FR": 1149,
+      "Fnac": 1229,
+      "Darty": 1219,
+      "LDLC": 1179
+    },
+    "stock_pixmania": 8,
+    "market": "FR",
+    "cost_price": 1075
+  },
+  {
+    "product": "AirPods Pro 2",
+    "category": "Audio",
+    "pixmania_price": 229,
+    "cost_price": 195,
+    "competitors": {
+      "Amazon FR": 225,
+      "Fnac": 239,
+      "Darty": 235,
+      "LDLC": 229
+    },
+    "stock_pixmania": 60,
+    "market": "FR"
+  },
+  {
+    "product": "Nintendo Switch OLED",
+    "category": "Console",
+    "pixmania_price": 289,
+    "cost_price": 262,
+    "competitors": {
+      "Amazon FR": 319,
+      "Fnac": 329,
+      "Darty": 329,
+      "LDLC": 339
+    },
+    "stock_pixmania": 35,
+    "market": "FR"
+  },
+  {
+    "product": "PlayStation 5 Slim",
+    "category": "Console",
+    "pixmania_price": 549,
+    "cost_price": 470,
+    "competitors": {
+      "Amazon FR": 479,
+      "Fnac": 499,
+      "Darty": 509,
+      "LDLC": 489
+    },
+    "stock_pixmania": 150,
+    "market": "FR"
+  },
+  {
+    "product": "LG OLED C3 55\"",
+    "category": "TV",
+    "pixmania_price": 1099,
+    "cost_price": 980,
+    "competitors": {
+      "Amazon FR": 1089,
+      "Fnac": 1119,
+      "Darty": 1129,
+      "LDLC": 1109
+    },
+    "stock_pixmania": 12,
+    "market": "FR"
+  },
+  {
+    "product": "Logitech MX Master 3S",
+    "category": "Accessoire",
+    "pixmania_price": 89,
+    "cost_price": 68,
+    "competitors": {
+      "Amazon FR": 99,
+      "Fnac": 105,
+      "Darty": 99,
+      "LDLC": 95
+    },
+    "stock_pixmania": 5,
+    "market": "FR"
+  }
 ]
